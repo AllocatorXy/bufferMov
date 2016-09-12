@@ -1,0 +1,39 @@
+* {margin: 0;padding: 0;}
+body{width: 100%;height: 100%;position: absolute;}
+#move, #move2 {
+	position: absolute;
+	display: table;
+	/*width: 25%;height: 25vw; */
+	/*left: 20%;top: 5%;*/
+	text-align: center;
+	background-color: #12ADEC;
+	overflow: hidden;
+}
+#move p, #move2 p {
+	display: table-cell;
+	vertical-align: middle;
+	font-family: "microsoft yahei";
+	font-size: 18px;
+	overflow: hidden;
+}
+/*使之在横竖屏都是大小相等的正方形*/
+@media all and (orientation :landscape) {
+#move, #move2 {height: 25%;width: 25vh;left: 20vh;top: 10vh;}
+#move2 {top: 40vh;left: 45vh;}
+#flag {
+	position: absolute;
+	left: 45vh;
+	float: left;
+	width: 1px;height: 100%;background-color: red;
+}
+}
+@media all and (orientation :portrait) {
+#move, #move2 {width:25%; height:25vw;left: 20vw;top: 10vw;}
+#move2 {top: 40vw;left: 45vw;}
+#flag {
+	position: absolute;
+	left: 45vw;
+	float: left;
+	width: 1px;height: 100%;background-color: red;
+}
+}
