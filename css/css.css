@@ -6,7 +6,7 @@ body{width: 100%;height: 100%;position: absolute;}
 	/*width: 25%;height: 25vw; */
 	/*left: 20%;top: 5%;*/
 	text-align: center;
-	background-color: #12ADEC;
+	background-color: #12ADEC;border: solid 1px red;
 	overflow: hidden;
 }
 #move p, #move2 p {

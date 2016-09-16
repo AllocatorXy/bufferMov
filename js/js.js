@@ -2,8 +2,8 @@ window.onload = function ()
 {
 	var oDivMov = document.getElementById('move');
 	var oDivMov2 = document.getElementById('move2');
-	var iTarget1 = oDivMov.offsetLeft+oDivMov.offsetWidth;
-	var iTarget2 = oDivMov2.offsetLeft;
+	var iTarget1 = parseInt(getStyle(oDivMov,'left'))+parseInt(getStyle(oDivMov,'width'));
+	var iTarget2 = parseInt(getStyle(oDivMov2,'left'));
 	var oBody = document.getElementsByTagName('body')[0];
 	var arr = [0,0];var arr2 = [1,0];
 
@@ -34,16 +34,17 @@ function act(obj,flag,defTar,timerId) //用外部变量保存target不用动态�
 		flag = 0;
 	}
 	timerId = setInterval(function () {
-			var speed = (oTarLeft - obj.offsetLeft)/10;
+			var realLeft = parseInt(getStyle(obj,'left'));
+			var speed = (oTarLeft - realLeft)/10;
 			speed = speed>0?Math.ceil(speed):Math.floor(speed);
 			
-			if (obj.offsetLeft == oTarLeft) 
+			if (realLeft == oTarLeft) 
 			{
 				clearInterval(timerId);
 			}
 			else
 			{
-				obj.style.left = obj.offsetLeft+speed+'px';
+				obj.style.left = realLeft+speed+'px';
 			}
 		}, 15);	
 
@@ -51,4 +52,19 @@ function act(obj,flag,defTar,timerId) //用外部变量保存target不用动态�
 	return arr;
 	//clearInterval的参数是1~n的正整数id，而js传参是传值，所以不能直接传递timer。
 	//需要把定时器的id传出去再赋给timer本身然后才能做到异步清除定时器且不混乱。
+}
+
+function getStyle(obj,name) {
+	
+	if (obj.currentStyle) 
+	{
+		//IE低版本
+		return obj.currentStyle[name];
+	}
+	else 
+	{
+		//FF等浏览器
+		return getComputedStyle(obj,null)[name]; 
+		//getComputedStyle函数中，第二个参数无用，任意设置
+	}
 }
