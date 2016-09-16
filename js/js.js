@@ -24,7 +24,8 @@ window.onload = function ()
 		timerId = setInterval(function () {
 				var speed = (oTarLeft - obj.offsetLeft)/10;
 				speed = speed>0?Math.ceil(speed):Math.floor(speed);
-				if (obj.offsetWidth == oTarLeft) 
+				
+				if (obj.offsetLeft == oTarLeft) 
 				{
 					clearInterval(timerId);
 				}
